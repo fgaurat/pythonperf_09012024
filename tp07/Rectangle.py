@@ -1,12 +1,39 @@
+import ast
+from Singleton import Singleton
 
-
-class Rectangle:
+class Rectangle(metaclass=Singleton):
     """
     La class Rectangle
     """
+    __cpt = 0
+
+    __slots__=['__longueur','__largeur']
+    
+    def __new__(cls,*args,**kwargs):
+        print("__new__ Rectangle",*args,**kwargs)
+        return super(Rectangle,cls).__new__(cls)
+
+
     def __init__(self,longueur:int=0,largeur:int=0):
         self.__longueur = longueur
         self.__largeur = largeur
+        print("__init__ Rectangle",longueur,largeur)
+        Rectangle.__cpt+=1
+    
+    def __call__(self):
+        print("__call__",self)
+
+    @classmethod
+    def buildFromStr(cls,value):
+        # longueur,largeur = [int(i) for i in value.split(',')]
+        longueur,largeur = ast.literal_eval(value)
+        return cls(longueur,largeur)
+
+    @staticmethod
+    def get_cpt():
+        return Rectangle.__cpt
+
+
 
     @property
     def longueur(self):

@@ -1,12 +1,45 @@
+import ast
 
+class RectangleSingleton:
+    """
+    La class RectangleSingleton
+    """
 
-class Rectangle:
-    """
-    La class Rectangle
-    """
+    instance = None
+    
+
+    __cpt = 0
+
+    __slots__=['__longueur','__largeur']
+    
+    def __new__(cls,*args,**kwargs): 
+        """méthode de construction standard en Python"""
+        if cls.instance is None:
+            cls.instance = object.__new__(cls)
+        return cls.instance
+    
+
+    
     def __init__(self,longueur:int=0,largeur:int=0):
         self.__longueur = longueur
         self.__largeur = largeur
+        print("__init__ RectangleSingleton",longueur,largeur)
+        RectangleSingleton.__cpt+=1
+    
+    def __call__(self):
+        print("__call__",self)
+
+    @classmethod
+    def buildFromStr(cls,value):
+        # longueur,largeur = [int(i) for i in value.split(',')]
+        longueur,largeur = ast.literal_eval(value)
+        return cls(longueur,largeur)
+
+    @staticmethod
+    def get_cpt():
+        return RectangleSingleton.__cpt
+
+
 
     @property
     def longueur(self):

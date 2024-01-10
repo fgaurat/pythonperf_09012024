@@ -1,6 +1,7 @@
 from Rectangle import Rectangle
 from DataRectangle import DataRectangle
 
+
 def main():
     r = Rectangle(2,3)
     

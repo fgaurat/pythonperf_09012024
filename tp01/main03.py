@@ -20,6 +20,13 @@ def f():
 def map_mult_2(i):
     return i*2
 
+def hello(**info):
+    print(info)
+
+# def hello2(firstName,name,/): # positional only
+def hello2(*,firstName,name): # keywords only
+    print(firstName,name)
+
 def main():
     l = [10,20,30]
     r = add(*l) # déballage
@@ -48,6 +55,8 @@ def main():
     # m = list(map(map_mult_2,l))
     m = list(map(lambda i:i*2,l))
     print(m)
+    print(50*'-')
+    hello2(firstName="Fred",name="GAURAT")
 
 if __name__ == '__main__':
     main()

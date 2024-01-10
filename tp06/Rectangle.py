@@ -1,12 +1,31 @@
+import ast
+from ICalcGeo import ICalcGeo
 
 
-class Rectangle:
+class Rectangle(ICalcGeo):
     """
     La class Rectangle
     """
+    __cpt = 0
+
+    __slots__=['__longueur','__largeur']
+
     def __init__(self,longueur:int=0,largeur:int=0):
         self.__longueur = longueur
         self.__largeur = largeur
+        Rectangle.__cpt+=1
+
+    @classmethod
+    def buildFromStr(cls,value):
+        # longueur,largeur = [int(i) for i in value.split(',')]
+        longueur,largeur = ast.literal_eval(value)
+        return cls(longueur,largeur)
+
+    @staticmethod
+    def get_cpt():
+        return Rectangle.__cpt
+
+
 
     @property
     def longueur(self):
