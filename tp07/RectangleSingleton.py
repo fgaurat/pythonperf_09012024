@@ -15,7 +15,7 @@ class RectangleSingleton:
     def __new__(cls,*args,**kwargs): 
         """méthode de construction standard en Python"""
         if cls.instance is None:
-            cls.instance = object.__new__(cls)
+            cls.instance = super().__new__(cls)
         return cls.instance
     
 

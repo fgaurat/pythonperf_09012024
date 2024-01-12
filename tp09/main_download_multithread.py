@@ -29,8 +29,12 @@ def main():
     end = time.perf_counter()
 
     print(f"{end-start:.3}s")
-    # 0.1
-
+    # 0.5 single
+    # 0.1 multithread
+    # 0.23s threadpool (5)
+    # 0.11s threadpool (10)
+    # 0.12s async (10)
+    # 0.16s async workers (10)
 
 
 
